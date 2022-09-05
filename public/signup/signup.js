@@ -1,8 +1,11 @@
-const loginForm = document.getElementById('loginForm');
-const loginEmail = document.getElementById('loginEmail');
-const loginPassword = document.getElementById('loginPassword');
+const submitBtn = document.getElementById('submitBtn');
+const loginEmail = document.getElementById('signupEmail');
+const userName = document.getElementById('userName');
+const loginPassword = document.getElementById('signupPassword');
+const confirmPassword = document.getElementById('confirmPassword');
 const showPasswordIcon = document.querySelector('i.fa-eye');
-
+const type = document.getElementById('type');
+console.log(submitBtn);
 function showPassword() {
   if (loginPassword.type === 'password') {
     loginPassword.type = 'text';
@@ -40,35 +43,52 @@ function showSuccess(input) {
 function submitValidation(event) {
   event.preventDefault();
   let flag = true;
-  if (loginEmail.value === '' && loginEmail.value.includes('@')) {
+  if (loginEmail.value === '' && loginPassword.value === '' && confirmPassword.value === '' && userName.value === '') {
+    flag = flag && showSuccess(userName);
+  } else {
     flag = flag && showError(
-      loginEmail,
-      'Email not Correct ',
+      type,
+      'values  cannot Correct ',
+    );
+  } if (!(loginEmail.value.includes('@'))) {
+    flag = flag && showError(
+      confirmPassword,
+      'values  cannot Correct ',
     );
   } else {
     flag = flag && showSuccess(loginEmail);
   }
-  if (loginPassword.value === '' || loginPassword.value.length < 6) {
+  if (loginPassword.value.length < 8 && loginPassword.value === confirmPassword.value) {
     flag = flag && showError(
       loginPassword,
-      'Password must be more than 6 characters',
+      'Password must be more than 8characters',
     );
   } else {
     flag = flag && showSuccess(loginPassword);
   }
   return flag;
 }
+
 showPasswordIcon.addEventListener('click', showPassword);
-loginForm.addEventListener('submit', (event) => {
-  if (submitValidation(event)) {
+submitBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+//   const subeel = submitValidation(event);
+// console.log(subeel)
+//   if (subeel) {
     const data = {
       email: loginEmail.value,
+      username: userName.value,
       password: loginPassword.value,
+      confirmpassword: confirmPassword.value,
+      type: type.value,
     };
-    fetch('/login', {
+    console.log(data);
+    return fetch('/signup', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(data),
-    }).then((res) => res.json()).catch((err) => err.json());
-  }
+    });
+  // }
 });
