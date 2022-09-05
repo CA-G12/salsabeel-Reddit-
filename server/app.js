@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const router = require('./router');
 
-// app.disabled('x-powered-by');
+app.disabled('x-powered-by');
 app.use(compression());
 
 app.use(express.urlencoded({ extended: false }));

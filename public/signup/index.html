@@ -4,21 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>flower shop </title>
 </head>
 <body>
     <form>
    
-        <input type="email" id="email" placeholder="Email"> 
-    <input type="text"  id="username" placeholder="Name" >
-        <input type="password"  id="password" placeholder="password">
-        <input type="password"  id="confirmpassword" placeholder="confirm password">
-        <select id="type">
-            <option value="seller">Seller</option>
-            <option value="user" selected>user</option>
-        </select>
-        <input type="submit" value="Sign up" id="sign-up-btn">
-    </form>
+        <main>
+            <section class="login-container">
+             <h2>Login</h2>
+
+             <form id="loginForm">
+               <div class="form-field">
+                 <label for="signupEmail">Email :</label>
+                 <br>
+                 <input type="email" id="signupEmail" placeholder="Enter your Email" />
+                 <small class="alert-message">Error</small>
+               </div>
+
+               <div class="form-field">
+                <label for="userName">Name :</label>
+                <br>
+                <input type="text" id="userName" placeholder="Enter your Name" />
+                <small class="alert-message">Error</small>
+              </div>
+               <div class="form-field">
+                 <label for="signupPassword">Password :</label>
+                 <br>
+                 <input type="password" id="signupPassword" placeholder="Enter your password" /> 
+                 <i class="far fa-eye"></i>
+                 <small class="alert-message">Error</small>
+
+                 <input type="password" id="confirmPassword" placeholder="confirm password" /> 
+                 <small class="alert-message">Error</small>
+                 <select id="type">
+                    <option value="seller"> seller </option>
+                    <option value="user" selected > user</option>
+                 </select>
+               </div>
+               <input id="submitBtn" type="submit">sign up</button>
+             </form>
+         </section> 
+           </main>
     <script src="./signup.js"></script>
 </body>
 </html>

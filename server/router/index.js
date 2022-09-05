@@ -1,7 +1,6 @@
 const express = require('express');
 const { join } = require('path');
 const { signup, login } = require('./Authorization/signup');
-// const query = require('../database/Queries');
 
 const router = express.Router();
 

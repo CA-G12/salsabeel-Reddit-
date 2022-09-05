@@ -1,16 +1,74 @@
-const loginBtn = document.getElementById('loginbtn');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
+const loginForm = document.getElementById('loginForm');
+const loginEmail = document.getElementById('loginEmail');
+const loginPassword = document.getElementById('loginPassword');
+const showPasswordIcon = document.querySelector('i.fa-eye');
 
-loginBtn.addEventListener('click', (event) => {
+function showPassword() {
+  if (loginPassword.type === 'password') {
+    loginPassword.type = 'text';
+    showPasswordIcon.style.color = 'red';
+  } else {
+    loginPassword.type = 'password';
+    showPasswordIcon.style.color = '#ddd';
+  }
+}
+
+function showError(input, message) {
+  const formField = input.parentElement;
+  formField.className = 'form-field error';
+
+  if ((formField.className === 'form-field error')) {
+    const alertMessage = formField.querySelector('.alert-message');
+    alertMessage.style.visibility = 'visible';
+    alertMessage.style.color = 'red';
+    alertMessage.innerText = message;
+  }
+  return false;
+}
+
+function showSuccess(input) {
+  const formField = input.parentElement;
+  formField.className = 'form-field success';
+
+  if ((formField.className === 'form-field success')) {
+    const alertMessage = formField.querySelector('.alert-message');
+    alertMessage.style.visibility = 'hidden';
+  }
+  return true;
+}
+
+function submitValidation(event) {
   event.preventDefault();
-  const data = {
-    email,
-    password,
-  };
-  return fetch('/login', {
-    method: 'POST',
-    header: 'application/json',
-    body: JSON.stringify(data),
-  }).then((data) => data.json()).catch((data) => console.log(data));
+  let flag = true;
+  if (loginEmail.value === '' && loginEmail.value.includes('@')) {
+    flag = flag && showError(
+      loginEmail,
+      'Email not Correct ',
+    );
+  } else {
+    flag = flag && showSuccess(loginEmail);
+  }
+  if (loginPassword.value === '' || loginPassword.value.length < 6) {
+    flag = flag && showError(
+      loginPassword,
+      'Password must be more than 6 characters',
+    );
+  } else {
+    flag = flag && showSuccess(loginPassword);
+  }
+  return flag;
+}
+showPasswordIcon.addEventListener('click', showPassword);
+loginForm.addEventListener('submit', (event) => {
+  if (submitValidation(event)) {
+    const data = {
+      email: loginEmail.value,
+      password: loginPassword.value,
+    };
+    fetch('/login', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then((res) => res.json()).catch((err) => err.json());
+  }
 });

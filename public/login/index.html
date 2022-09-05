@@ -4,14 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <title>Document</title>
 </head>
 <body>
-    <form>
+    <!-- <form>
         <input type="email"  id="email" placeholder="Enter your email">
         <input type="password" id="password" placeholder="Enter your password">
         <input type="submit" value="Login" id="loginbtn">
-    </form>
+    </form> -->
+    <main>
+       <section class="imgSection">
+        <img src="../assets/login.png" alt="" srcset="">
+       </section>
+
+       <section class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="form-field">
+            <label for="loginEmail">Email :</label>
+            <br>
+            <input type="email" id="loginEmail" placeholder="Enter your username" />
+            <small class="alert-message">Error</small>
+          </div>
+          <div class="form-field">
+            <label for="loginPassword">Password :</label>
+            <br>
+            <input type="password" id="loginPassword" placeholder="Enter your password" /> 
+            <i class="far fa-eye"></i>
+            <small class="alert-message">Error</small>
+          </div>
+          <button class="btn" type="submit">Login</button>
+        </form>
+    </section> 
+      </main>
     <script src="./dom.js"></script>
 </body>
 </html>
