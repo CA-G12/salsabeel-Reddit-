@@ -4,11 +4,10 @@ require('dotenv').config();
 const signup = (id, res) => {
   jsonwebtoken.sign(id, process.env.SECRET_KEY, (err, data) => {
     if (err) {
-      console.log(`{ err: ${err}}`);
+      throw new Error(err);
     } else {
-      console.log(data)
       res.cookie('token', data);
-      res.json('done')
+      res.json('done');
     }
   });
 };

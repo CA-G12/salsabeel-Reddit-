@@ -1,6 +1,7 @@
 const express = require('express');
 const { join } = require('path');
-const { signup, login } = require('./Authorization/signup');
+const { signup } = require('./Authorization/signup');
+const login = require('./Authorization/login');
 
 const router = express.Router();
 
