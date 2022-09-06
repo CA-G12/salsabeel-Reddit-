@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(authorization);
 
 app.get('/', (req, res) => {
-  if (req.user) res.sendFile(join(__dirname, '..', 'public'));
+  if (req.user) res.sendFile(join(__dirname, '..', 'public','index.html'));
   else { res.sendFile(join(__dirname, '..', 'public', 'login'))}
 });
 app.use(express.static(join(__dirname, '..', 'public','login')))
