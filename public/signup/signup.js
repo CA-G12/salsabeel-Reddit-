@@ -5,7 +5,7 @@ const loginPassword = document.getElementById('signupPassword');
 const confirmPassword = document.getElementById('confirmPassword');
 const showPasswordIcon = document.querySelector('i.fa-eye');
 const type = document.getElementById('type');
-console.log(submitBtn);
+
 function showPassword() {
   if (loginPassword.type === 'password') {
     loginPassword.type = 'text';
@@ -72,23 +72,24 @@ function submitValidation(event) {
 showPasswordIcon.addEventListener('click', showPassword);
 submitBtn.addEventListener('click', (event) => {
   event.preventDefault();
-//   const subeel = submitValidation(event);
-// console.log(subeel)
-//   if (subeel) {
-    const data = {
-      email: loginEmail.value,
-      username: userName.value,
-      password: loginPassword.value,
-      confirmpassword: confirmPassword.value,
-      type: type.value,
-    };
-    console.log(data);
-    return fetch('/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-  // }
+  //   const subeel = submitValidation(event);
+  // console.log(subeel)
+  //   if (subeel) {
+  const data = {
+    email: loginEmail.value,
+    username: userName.value,
+    password: loginPassword.value,
+    confirmpassword: confirmPassword.value,
+    type: type.value,
+  };
+
+  return fetch('/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  }).then((res) => res.json())
+    .then((data) => console.log(data, 1221))
+    .catch((error) => console.log(error));
 });
