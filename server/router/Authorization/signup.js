@@ -1,8 +1,8 @@
 const bcryptjs = require('bcryptjs');
+const signUp = require('./jwt/index');
 const { validateSignup } = require('../../config/validate');
 const { User } = require('../../database/Queries');
-const signUp = require('./jwt/index');
-const connection = require('../../database/config/connection')
+
 const userObj = new User();
 
 const signup = (req, res) => {
