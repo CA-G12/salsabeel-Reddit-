@@ -6,7 +6,7 @@ Drop TABLE IF EXISTS users, products, bags CASCADE;
     id SERIAL PRIMARY KEY ,
     userName varchar(100) not null ,
     hashPassword varchar(100) not null ,
-    type varchar(100) not null  DEFAULT 'buyer',
+    type varchar(100) not null  DEFAULT 'user',
     email varchar(100) not null UNIQUE 
  );
 
