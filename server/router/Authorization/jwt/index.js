@@ -11,4 +11,8 @@ const signup = (id, res) => {
     }
   });
 };
+const authorzation = (req, res, next) => {
+const { token } = req.cookies;
+console.log(token);
+};
 module.exports = signup;
