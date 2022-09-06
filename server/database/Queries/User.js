@@ -9,7 +9,7 @@ class User {
     username, email, hashPassword, type,
   }) {
     this.query = {
-      text: 'INSERT INTO users (userName,email,hashPassword,type) values($1,$2,$3,$4) returning id',
+      text: 'INSERT INTO users (userName,email,hashPassword,type) values($1,$2,$3,$4) returning email',
       values: [username, email, hashPassword, type],
     };
     return connection.query(this.query);
@@ -17,10 +17,27 @@ class User {
 
   getEmailUser(email) {
     this.query = {
-      text: 'SELECT Email FROM users where email = $1',
+      text: 'SELECT email FROM users where email = $1',
+      values: [email],
+    };
+    return connection.query(this.query);
+  }
+
+  getHashPassword(email) {
+    this.query = {
+      text: 'SELECT hashPassword FROM users where email = $1',
+      values: [email],
+    };
+    return connection.query(this.query);
+  }
+
+  getCredential(email) {
+    this.query = {
+      text: 'SELECT id,userName FROM users where email = $1',
       values: [email],
     };
     return connection.query(this.query);
   }
 }
+
 module.exports = User;

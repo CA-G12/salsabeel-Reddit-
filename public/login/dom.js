@@ -69,6 +69,6 @@ loginForm.addEventListener('submit', (event) => {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(data),
-    }).then((res) => res.json()).catch((err) => err.json());
+    }).then((res) => res.json()).then(console.log).catch(console.log);
   }
 });
