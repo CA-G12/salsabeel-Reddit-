@@ -4,7 +4,6 @@ const userName = document.getElementById('userName');
 const loginPassword = document.getElementById('signupPassword');
 const confirmPassword = document.getElementById('confirmPassword');
 const showPasswordIcon = document.querySelector('i.fa-eye');
-const type = document.getElementById('type');
 
 function showPassword() {
   if (loginPassword.type === 'password') {
@@ -80,7 +79,6 @@ submitBtn.addEventListener('click', (event) => {
     username: userName.value,
     password: loginPassword.value,
     confirmpassword: confirmPassword.value,
-    type: type.value,
   };
 
   return fetch('/signup', {
