@@ -2,15 +2,15 @@ const connection = require('../config/connection');
 
 class User {
   constructor() {
-    const query = '';
+    let query;
   }
 
   addUser({
-    username, email, hashPassword, type,
+    username, email, hashPassword,
   }) {
     this.query = {
-      text: 'INSERT INTO users (userName,email,hashPassword,type) values($1,$2,$3,$4) returning email',
-      values: [username, email, hashPassword, type],
+      text: 'INSERT INTO users (username,email,hashpassword) values($1,$2,$3) returning id',
+      values: [username, email, hashPassword],
     };
     return connection.query(this.query);
   }
@@ -25,7 +25,7 @@ class User {
 
   getHashPassword(email) {
     this.query = {
-      text: 'SELECT hashPassword FROM users where email = $1',
+      text: 'SELECT hashPassword,id FROM users where email = $1',
       values: [email],
     };
     return connection.query(this.query);
@@ -39,5 +39,5 @@ class User {
     return connection.query(this.query);
   }
 }
-
-module.exports = User;
+const userQueries = new User();
+module.exports = userQueries;
