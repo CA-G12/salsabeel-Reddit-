@@ -6,10 +6,10 @@ const showPasswordIcon = document.querySelector('i.fa-eye');
 function showPassword() {
   if (loginPassword.type === 'password') {
     loginPassword.type = 'text';
-    showPasswordIcon.style.color = 'red';
+    showPasswordIcon.style.color = '#10CA65';
   } else {
     loginPassword.type = 'password';
-    showPasswordIcon.style.color = '#ddd';
+    showPasswordIcon.style.color = '#3F3C41';
   }
 }
 
@@ -53,8 +53,6 @@ function submitValidation(event) {
       loginPassword,
       'Password must be more than 6 characters',
     );
-  } else {
-    flag = flag && showSuccess(loginPassword);
   }
   return flag;
 }
@@ -69,6 +67,15 @@ loginForm.addEventListener('submit', (event) => {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(data),
-    }).then((res) => res.json()).then(console.log).catch(console.log);
+    }).then((res) => res.json())
+      .then((data) => {
+        if (data.error.includes('password')) {
+          showError(
+            loginPassword,
+            'Password Not correct ',
+          );
+        }
+      })
+      .catch((err) => console.log(err));
   }
 });
