@@ -6,7 +6,6 @@ const validateSignup = (info) => {
     username: joi.string().required().min(10).max(80),
     password: joi.string().required().min(8).max(15),
     confirmpassword: joi.ref('password'),
-    type: joi.string().valid('user', 'seller'),
   });
   return schema.validateAsync(info);
 };

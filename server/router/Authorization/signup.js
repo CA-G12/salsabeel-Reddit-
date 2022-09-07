@@ -1,21 +1,24 @@
 const bcryptjs = require('bcryptjs');
-const signUp = require('./jwt/index');
+const generateToken = require('./jwt');
 const { validateSignup } = require('../../config/validate');
-const { User } = require('../../database/Queries');
-
-const userObj = new User();
+const { userQueries } = require('../../database/Queries');
 
 const signup = (req, res) => {
   const {
-    email, username, type, password,
+    email, username, password,
   } = req.body;
-  validateSignup(req.body).then((data) => userObj.getEmailUser(data.email))
+  validateSignup(req.body)
+    .then((data) => userQueries.getEmailUser(data.email))
     .then((data) => { if (data.rows.length > 0) { throw new Error('email exits'); } })
     .then(() => bcryptjs.hash(password, 15))
-    .then((hashPassword) => userObj.addUser({
-      username, email, hashPassword, type,
+    .then((hashPassword) => userQueries.addUser({
+      username, email, hashPassword,
     }))
-    .then((InsertedEmail) => signUp(InsertedEmail.rows[0], res))
+    .then((id) => generateToken(id.rows[0]))
+    .then((data) => {
+      res.cookie('token', data);
+      res.json('done');
+    })
     .catch((err) => res.json({ err }));
 };
 
