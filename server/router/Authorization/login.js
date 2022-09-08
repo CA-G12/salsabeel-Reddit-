@@ -16,12 +16,12 @@ const login = (req, res) => {
       });
     }))
     .then((data) => {
-      if (data) {
-        res.cookie('token', data);
-        res.json('done');
-      } else {
-        res.json('Password not correct');
-      }
+      if (!data) { res.json('Password not correct'); } else { return userQueries.getCredential(email); }
+    })
+    .then((data) => generateToken({ id: data.rows[0].id }))
+    .then((token) => {
+      res.cookie('token', token);
+      res.json('done');
     })
     .catch((err) => { res.json({ err }); });
 };

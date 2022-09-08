@@ -6,14 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="./style.css">
-    <title>flower shop </title>
+    <title>Craft</title>
 </head>
 <body>
     <form>
    
         <main>
+          <section class="imgSection">
+            <h1>
+              FIND <br> YOUR <br> ART
+            </h1>
+           </section>
+
             <section class="login-container">
-             <h2>Login</h2>
+             <h2>Sign up </h2>
 
              <form id="loginForm">
                <div class="form-field">
@@ -35,11 +41,17 @@
                  <input type="password" id="signupPassword" placeholder="Enter your password" /> 
                  <i class="far fa-eye"></i>
                  <small class="alert-message">Error</small>
-
+              </div>
+              <div>
+                 <label for="confirmPassword">Confirm password :</label>
+                 <br>
                  <input type="password" id="confirmPassword" placeholder="confirm password" /> 
-                 <small class="alert-message">Error</small>
-               </div>
-               <input id="submitBtn" type="submit">sign up</button>
+                 <i class="far fa-eye"></i>
+                 <small class="alert-message">Error</small> 
+              </div>
+
+             
+               <input  class="btn" id="submitBtn" type="submit" value="Sign up">
              </form>
          </section> 
            </main>
