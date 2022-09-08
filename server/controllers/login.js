@@ -1,7 +1,7 @@
 const bcryptjs = require('bcryptjs');
-const { validateLogin } = require('../../config/validate');
-const { userQueries } = require('../../database/Queries');
-const generateToken = require('./jwt');
+const { validateLogin } = require('../config/validate');
+const { userQueries } = require('../database/Queries');
+const generateToken = require('../router/Authorization/jwt');
 
 const login = (req, res) => {
   const { email, password } = req.body;

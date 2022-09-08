@@ -1,16 +1,23 @@
 const express = require('express');
 const { join } = require('path');
-const { signup } = require('./Authorization/signup');
-const login = require('./Authorization/login');
-const {testConnection} = require('../database/Queries');
+
+const {
+  login, signup, userinfo, userPosts, addPosts, allPosts,
+} = require('../controllers');
+
 const router = express.Router();
 
 router.get('/signup', (req, res) => {
-  res.sendFile(join(__dirname, '..', '..', 'public', 'signup'));
+  res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'signup.html'));
 }).post('/signup', signup);
 
 router.get('/login', (req, res) => {
-  res.sendFile(join(__dirname, '..', '..', 'public', 'login'));
+  res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'login.html'));
 }).post('/login', login);
-router.get('/check', testConnection);
+
+router.get('/user', userinfo);
+router.get('/userPosts', userPosts);
+router.get('/posts', allPosts);
+router.post('/addPosts', addPosts);
+
 module.exports = router;

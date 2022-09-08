@@ -1,7 +1,7 @@
 const bcryptjs = require('bcryptjs');
-const generateToken = require('./jwt');
-const { validateSignup } = require('../../config/validate');
-const { userQueries } = require('../../database/Queries');
+const generateToken = require('../router/Authorization/jwt');
+const { validateSignup } = require('../config/validate');
+const { userQueries } = require('../database/Queries');
 
 const signup = (req, res) => {
   const {
@@ -22,4 +22,4 @@ const signup = (req, res) => {
     .catch((err) => res.json({ err }));
 };
 
-module.exports = { signup };
+module.exports = signup;

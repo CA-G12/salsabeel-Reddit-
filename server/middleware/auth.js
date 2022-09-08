@@ -6,7 +6,7 @@ const authorization = (req, res, next) => {
   jsonwebtoken.verify(token, process.env.SECRET_KEY, (err, data) => {
     if (!err) {
       req.user = {
-        email: data,
+        data,
       };
     }
     next();
