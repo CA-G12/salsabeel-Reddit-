@@ -1,0 +1,81 @@
+:root{
+    --main-color: #10CA65;;
+    --white-color:#ffff;
+    --border-radius-button: 2em; 
+    --border-radius-img: 1em; 
+    --margin-1em:1em;
+    --margin-3em:3em;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+main{
+    margin :1.5em;
+}
+#coverUrl{
+    display: block;
+    width: 100%;
+    height: 25vh;
+    border-top-left-radius:  .5em;
+    border-top-right-radius: .5em;
+
+}
+.cover button {
+    float: right;
+    width:150px;
+    height: 35px;
+    font-size: 20px;
+    margin-right:var(--margin-1em) ;
+    color :var(--white-color);
+    background-color: var(--main-color);
+    border-radius: var(--border-radius-button);
+}
+.profileDiv{
+    margin-left: var(--margin-3em);
+    margin-top: -15%;
+    width: 100%;
+}  
+#imageUrl{
+     border-radius: 50%;
+     width:20%;
+     height:25vh;
+     border: .5em solid var(--white-color); 
+     background-color:var(--white-color);
+}
+.info{
+    display:flex;
+    justify-content:space-between;
+    margin:var(--margin-1em) 0em 0em 13em;
+}
+#postH2{
+ text-decoration: underline 5px var(--main-color) ;
+ margin-top: var(--margin-1em);
+ margin-left: 4em;
+ font-size: 25px;
+}
+h3{
+    font-size: 20px;  
+}
+.posts{
+    margin:  var(--margin-3em);
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap:wrap;
+}
+.postImg{
+    width:180px;
+    height: 180px;
+    border-radius: var(--border-radius-img);
+}
+.infoDiv{
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 10px;
+}
+.NoPosts{
+    margin-left: 10em;
+    margin-top: -3em;
+    width: 50%;
+}
