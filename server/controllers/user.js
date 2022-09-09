@@ -1,14 +1,20 @@
 const { join } = require('path');
 const { userQueries } = require('../database/Queries');
 
-const userinfo = (req, res) => {
+const userProfile = (req, res) => {
   if (req.user) {
     res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'profile.html'));
   } else {
     res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'login.html'));
   }
 };
-
+const userinfo = (req, res) => {
+  if (req.user) {
+    userQueries.getUserInfo(req.user.data.id)
+      .then((data) => res.json({ info: data.rows }))
+      .catch((err) => res.json({ err }));
+  }
+};
 const userPosts = (req, res) => {
   if (req.user) {
     userQueries.getUserPosts(req.user.data.id)
@@ -35,5 +41,5 @@ const editCoverImg = (req, res) => {
 };
 
 module.exports = {
-  userinfo, userPosts, editProfileImg, editCoverImg,
+  userinfo, userPosts, editProfileImg, editCoverImg, userProfile,
 };

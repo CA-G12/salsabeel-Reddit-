@@ -2,7 +2,13 @@ const express = require('express');
 const { join } = require('path');
 
 const {
-  login, signup, userinfo, userPosts, addPosts, allPosts,
+  signup,
+  login,
+  userinfo,
+  userPosts,
+  addPosts,
+  allPosts,
+  userProfile,
 } = require('../controllers');
 
 const router = express.Router();
@@ -15,7 +21,9 @@ router.get('/login', (req, res) => {
   res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'login.html'));
 }).post('/login', login);
 
+router.get('/profile', userProfile);
 router.get('/user', userinfo);
+router.get('/userinfo', userPosts);
 router.get('/userPosts', userPosts);
 router.get('/posts', allPosts);
 router.post('/addPosts', addPosts);

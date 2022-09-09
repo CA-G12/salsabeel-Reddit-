@@ -4,9 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/common.css">
+    <link rel="stylesheet" href="../CSS/profile.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Craft</title>
 </head>
-<body>
-    <h1>profile</h1>
+<body> 
+
+    <section class="craftLeft"> 
+       <div class="logo">
+          <img src="../assets/logo.png" width="35px" height="25px"/> 
+          <h1>  CRAFT</h1>
+       </div>
+       <section class="search">
+       <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button> 
+       <input type="text" id="search" placeholder="Search anything " /> 
+   
+       </section>
+        <div>
+          <ul>
+            <li><img src="../assets/fire.png" width="20px"> Popular</li>
+            <li><img src="../assets/salad.png" width="20px" > Food</li>
+            <li><img src="../assets/nature.png"width="20px" > Nature</li> 
+            <li><img src="../assets/Photography.png" width="20px" > Photography</li>
+        </ul> 
+        </div>
+    </section>
+    <main class="container">  
+          
+        <section class="userImage">
+            <div class="cover"> 
+                <img alt="cover image"  id ="coverUrl">
+                <div class="info"><h3 id="username"></h3> <button> Edit Profile </button></div>
+            </div>
+            <div class="profileDiv">
+               <img alt="profile image"  id ="imageUrl">
+            </div>
+         </section>
+         <section>
+            <h2 id="postH2"> POST </h2>
+         <section class="posts"></section>
+         </section>
+   
+     </main>
+     <script src="../JS/profile.js"></script>
 </body>
 </html>
