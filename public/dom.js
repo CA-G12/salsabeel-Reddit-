@@ -1,35 +1,61 @@
+const trendingData = document.getElementsByClassName('trendingData')[0];
+const handleData = document.getElementsByClassName('handleData')[0];
+const photography = document.getElementById('photography');
+const nature = document.getElementById('nature');
+const food = document.getElementById('food');
+const job = document.getElementById('job');
 
-const trending = document.getElementById('trending');
-const products = document.getElementById('products');
+function createPost(data, dataFor) {
+  dataFor.textContent = '';
+  data.post.map((ele) => {
+    const postDiv = document.createElement('div');
+    postDiv.setAttribute('class', 'postDiv');
 
-createCard();
-createCard();
-createCard();
+    const postImg = document.createElement('img');
+    postImg.setAttribute('class', 'postImg');
+    postImg.src = ele.imageurl;
 
-function createCard() {
-  const card = document.createElement('div');
-  card.setAttribute('class', 'card');
+    const infoDiv = document.createElement('div');
+    infoDiv.setAttribute('class', 'infoDiv');
 
-  const imgProd = document.createElement('img');
-  imgProd.src = './assets/header.jpg';
-  imgProd.setAttribute('class', 'imgProduct');
+    const postTitle = document.createElement('h3');
+    postTitle.setAttribute('class', 'postTitle');
+    postTitle.textContent = ele.title;
 
-  const product = document.createElement('div');
-  product.setAttribute('class', 'productinfo');
+    const spanLike = document.createElement('span');
+    spanLike.textContent = ele.like;
 
-  const productName = document.createElement('h3');
-  productName.setAttribute('class', 'productName');
-  productName.textContent = 'Rose';
+    const likes = document.createElement('i');
+    likes.setAttribute('class', 'fa-regular fa-heart');
+    spanLike.appendChild(likes);
 
-  const productPrice = document.createElement('span');
-  productPrice.setAttribute('class', 'productPrice');
-  productPrice.textContent = '25$';
-
-  const shopNow = document.createElement('button');
-  shopNow.setAttribute('class', 'shopNow');
-  shopNow.textContent = 'Buy';
-
-  product.append(productName, productPrice);
-  card.append(imgProd, product, shopNow);
-  products.appendChild(card);
+    infoDiv.append(postTitle, spanLike);
+    postDiv.append(postImg, infoDiv);
+    dataFor.appendChild(postDiv);
+  });
 }
+
+fetch('/posts', {
+  method: 'GET',
+  headers: { 'content-type': 'application/json' },
+}).then((res) => res.json()).then((data) => createPost(data, handleData))
+  .catch((err) => console.log(err));
+
+fetch('/trending', {
+  method: 'GET',
+  headers: { 'content-type': 'application/json' },
+}).then((res) => res.json()).then((data) => createPost(data, trendingData))
+  .catch((err) => console.log(err));
+
+function fetchByCategory(category) {
+  fetch(`/posts/${category}`, {
+    method: 'GET',
+    headers: { 'content-type': 'application/json' },
+  }).then((res) => res.json())
+    .then((data) => createPost(data, handleData))
+    .catch((err) => console.log(err));
+}
+food.addEventListener('click', () => { fetchByCategory('Food'); });
+nature.addEventListener('click', () => { fetchByCategory('Nature'); });
+photography.addEventListener('click', () => { fetchByCategory('Photography'); });
+job.addEventListener('click', () => { fetchByCategory('Job'); });
