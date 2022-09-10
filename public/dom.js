@@ -8,19 +8,7 @@ const addPOST = document.getElementById('addPOST');
 const popDiv = document.getElementsByClassName('popDiv')[0];
 const closepop = document.getElementsByClassName('closepop')[0];
 const sectionPost = document.getElementById('sectionPost');
-const inputsPost = document.getElementById('inputsPost');
 
-addPOST.addEventListener('click', () => {
-  popDiv.style.display = 'block';
-  inputsPost.style.display = 'block';
-  sectionPost.style.display = 'none';
-});
-
-addPOST.addEventListener('click', () => {
-  popDiv.style.display = 'block';
-  inputsPost.style.display = 'block';
-  sectionPost.style.display = 'none';
-});
 closepop.addEventListener('click', () => {
   popDiv.style.display = 'none';
 });
@@ -107,7 +95,6 @@ fetch('/trending', {
   .catch((err) => console.log(err));
 
 function postInfo(postId) {
-  inputsPost.style.display = 'none';
   sectionPost.style.display = 'block';
   popDiv.style.display = 'block';
   sectionPost.textContent = '';
