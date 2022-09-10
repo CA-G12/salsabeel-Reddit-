@@ -9,6 +9,8 @@ const {
   addPosts,
   allPosts,
   userProfile,
+  getTrend,
+  getCategory
 } = require('../controllers');
 
 const router = express.Router();
@@ -26,6 +28,8 @@ router.get('/user', userinfo);
 router.get('/userinfo', userPosts);
 router.get('/userPosts', userPosts);
 router.get('/posts', allPosts);
+router.get('/posts/:category', getCategory);
+router.get('/trending', getTrend);
 router.post('/addPosts', addPosts);
 
 module.exports = router;

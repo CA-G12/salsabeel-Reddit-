@@ -16,10 +16,11 @@ class Posts {
   }
 
   getPostByCategory(category) {
+    
     this.sql = {
       text: 'SELECT p.id,p.userId,p.content,p.title,p.category,p.imageUrl,COALESCE(sum(a.liked),0)as like,COALESCE(sum(a.rated),0) as rate FROM posts p left join actions a on a.postId= p.id Where category=$1 group by p.id,p.userId ,p.content,p.title,p.category,p.imageUrl ;',
       values: [category],
-    };
+    };console.log(this.sql.text);
     return connection.query(this.sql);
   }
 

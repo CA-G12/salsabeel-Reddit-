@@ -57,8 +57,8 @@ main{
 }
 h3{
     font-size: 20px;  
-}
-.posts{
+ }
+/*.posts{
     margin:  var(--margin-3em);
     display: flex;
     justify-content: flex-start;
@@ -78,4 +78,4 @@ h3{
     margin-left: 10em;
     margin-top: -3em;
     width: 50%;
-}
+} */

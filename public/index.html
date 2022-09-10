@@ -4,147 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/common.css">
     <link rel="stylesheet" href="./main.css">
-    <title>Flower Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Craft</title>
 </head>
 <body>
-    <header>
-        <div class="header">
-
-      
-        <h1>Flower shop</h1>
-        <nav>
-            <ul>
-            <li class="contentpage">
-                <a href="#">Home</a>
-                
-            </li>
-            <li class="contentpage">
-                <a href="#products">Products</a>
-                
-            </li>
-            <li  class="contentpage">
-                <a href="#">Contact us</a>
-                
-            </li>
-            <li class="signin">
-                <a href="/login">Sign in</a>
-                
-            </li>
-            <li class="signup">
-                
-                <a href="/signup" >Sign up</a>
-                
-            </li>
-        </ul>
-        </nav>
-      </div>
-        <div>
-           <h2>
-            Happiness blooms from within
-           </h2>
+   
+    <section class="craftLeft"> 
+        <div class="logo">
+           <img src="../assets/logo.png" width="35px" height="25px"/> 
+           <h1>  CRAFT</h1>
         </div>
-    </header>
-    <main>
-        
-        <section id="trending">
-            
-            <h1 class="titles">
-                trending Products
-            </h1>
+         <div>
+           <ul>
+             <li><img src="../assets/fire.png" width="20px"> Popular</li>
+             <li id="job"><img src="../assets/job.png" width="20px" >Job</li>
+             <li id="food"><img src="../assets/salad.png" width="20px" > Food</li>
+             <li id="nature"><img src="../assets/nature.png"width="20px" > Nature</li> 
+             <li id="photography"><img src="../assets/Photography.png" width="20px" > Photography</li>
+         </ul> 
+         </div>
+     </section>
+     <main class="container">  
+        <nav class="head">
+             <section class="search">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button> 
+                <input type="text" id="search" placeholder="Search anything " /> 
+          </section>
+          <ul>
+            <li> <a href="/login">  Login </a> </li>     
+            <li> <a href="/signup"> Sign up </a> </li>
+         </ul>
+        </nav>
+            <!-- <textarea name="" id="textArea" cols="25" rows="3" placeholder="ADD YOUR POST.."></textarea> -->
+    <section class="allPost">
+      
+        <section class="handleData">  
         </section>
-        <section >
-            <h1 class="titles">
-                Our Products
-            </h1>
-            <section id="products">
-                
-            </section>
+        <section class="trendingData">
+            <h1>trending</h1>
         </section>
-    </main>
-    
-    <footer class="footer" id="footer">
-        
-        <div class="footer-bottom">
-            <div class="section footer-top bg-dark has-bg-image"
-                style="background-image: url('./assets/images/footer-bg.png')">
-                <div class="container">
-    
-                    <ul class="footer-list">
-    
-                        <li>
-                            <p class="footer-list-title has-before">Our Links</p>
-                        </li>
-    
-                        <li>
-                            <a href="#" class="footer-link">Home</a>
-                        </li>
-    
-                        <li>
-                            <a href="#" class="footer-link">Classes</a>
-                        </li>
-    
-                        <li>
-                            <a href="#" class="footer-link">Contact Us</a>
-                        </li>
-    
-                    </ul>
-    
-                    <ul class="footer-list">
-    
-                        <li>
-                            <p class="footer-list-title has-before">Contact Us</p>
-                        </li>
-    
-                        <li class="footer-list-item">
-                    
-                            <address class="address footer-link">
-                                1247/Plot No. 39, 15th Phase, Palestine, Gaza
-                            </address>
-                        </li>
-    
-                        <li class="footer-list-item">
-                            <div>
-                                <a href="tel:18001213637" class="footer-link">+972-592-444-6666</a>
-                            </div>
-                        </li>
-    
-                        <li class="footer-list-item">
-    
-                            <div>
-                                <a href="mailto:info@fitlife.com" class="footer-link">info@flowerShop.com</a>
-    
-                                <a href="mailto:services@fitlife.com" class="footer-link">services@flowerShop.com</a>
-                            </div>
-                        </li>
-    
-                    </ul>
-    
-                </div>
-            </div>
-    
-                <div class="container">
-    
-                    <p class="copyright">
-                        &copy;2022 Flower Shop. All Rights Reserved By <a href="https://github.com/CA-G12/Fit-life"
-                            class="copyright-link"> Salsabeel</a>
-                    </p>
-    
-                    <ul class="footer-bottom-list">
-    
-                        <li>
-                            <a href="#" class="footer-bottom-link has-before">Privacy Policy</a>
-                        </li>
-    
-                        <li>
-                            <a href="#" class="footer-bottom-link has-before">Terms & Condition</a>
-                        </li>
-    
-                    </ul>
-    
-                </div>
-            </div>
-    </footer>
-    <script src='./dom.js'></script>
+    </section>
+      </main>
+    <script src="./dom.js"></script>
 </body>
 </html>

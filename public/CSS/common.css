@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&family=Cairo&family=Charis+SIL&family=Cormorant+Garamond:ital,wght@1,300&family=Cormorant:wght@300&family=Dancing+Script&family=Jost&family=Montserrat:ital,wght@0,400;1,300&family=Nuosu+SIL&family=Oswald:wght@300;500&family=Rubik:wght@300&family=Staatliches&display=swap');
 :root{
     --color-white : white;
-    --f-color:#3F3C41;;
+    --f-color:#;;
     --main-color: #10CA65;
     --ff-Jost:'Jost',serif;
     --fs-input:1.25em;
@@ -30,18 +30,24 @@ body{
     height: 100vh;
     margin:0 var(--margin-1em);
     width: 18%;
-
-
 } 
 main{
     width: 70%;
+}
+button{
+  outline: none;
+  border: none;
 }
 .logo{
   margin-top:2em;
   display: flex;
 }
-.search {
+.head{
     margin-top:var(--margin-1em); 
+    display: flex;
+    justify-content: space-betw
+}
+.search {
     width:100%;
     position: relative;
 }
@@ -74,17 +80,39 @@ main{
     font-size: 0.9rem;
     padding-left: 10px;
   }
-  ul{
+  .craftLeft ul{
     margin-top:var(--margin-1em);
   }
-  li{
+  .craftLeft li{
   list-style: none;
   margin-top: .2em;
   }
-  li:hover{
+  .craftLeft li:hover{
     color :var(--main-color);
   }
   li img, .logo img {
     margin-top: .4em;
     margin-right: .4em;
   }
+
+  .posts{
+    margin:  var(--margin-3em);
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap:wrap;
+}
+.postImg{
+    width:180px;
+    height: 180px;
+    border-radius: var(--border-radius-img);
+}
+.infoDiv{
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 10px;
+}
+.NoPosts{
+    margin-left: 10em;
+    margin-top: -3em;
+    width: 50%;
+}
