@@ -2,7 +2,7 @@ const { join } = require('path');
 const { userQueries } = require('../database/Queries');
 
 const userProfile = (req, res) => {
-  if (req.params.id) {
+  if (req.user||req.params.id) {
     res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'profile.html'));
   } else {
     res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'login.html'));
@@ -10,26 +10,17 @@ const userProfile = (req, res) => {
 };
 
 const userinfo = (req, res) => {
-  if (req.params.id) {
-    const id = req.params.id
+  if (req.params.id||req.user) {
+    const id = req.params.id||req.user.data.id;
     userQueries.getUserInfo(id)
       .then((data) => res.json({ info: data.rows }))
       .catch((err) => res.json({ err }));
   }
-  else{
-    userQueries.getUserInfo(req.user.data.id)
-    .then((data) => res.json({ info: data.rows }))
-    .catch((err) => res.json({ err })); 
-  }
 };
 const userPosts = (req, res) => {
-  if (req.params.id) {
-    const id = req.params.id;
+  if (req.params.id||req.user) {
+    const id = req.params.id||req.user.data.id;
     userQueries.getUserPosts(id)
-      .then((data) => res.json({ posts: data.rows }))
-      .catch((err) => res.json({ err }));
-  }else{
-    userQueries.getUserPosts(req.user.data.id)
       .then((data) => res.json({ posts: data.rows }))
       .catch((err) => res.json({ err }));
   }
