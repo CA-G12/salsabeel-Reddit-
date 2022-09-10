@@ -5,6 +5,7 @@ const imageUrl = document.getElementById('imageUrl');
 const coverUrl = document.getElementById('coverUrl');
 const userName = document.getElementById('username');
 const photography = document.getElementById('photography');
+const popular = document.getElementById('popular');
 const nature = document.getElementById('nature');
 const food = document.getElementById('food');
 const job = document.getElementById('job');
@@ -147,6 +148,15 @@ if (param) {
     headers: { 'content-type': 'application/json' },
   }).then((res) => res.json())
     .then((data) => createPost(data.posts))
+    .catch((err) => console.log(err));
+}
+function fetchByCategory(category) {
+  fetch(`/posts/${category}`, {
+    method: 'GET',
+    headers: { 'content-type': 'application/json' },
+  })
+    .then((res) => res.json())
+    .then((data) => createPost(data, handleData))
     .catch((err) => console.log(err));
 }
 food.addEventListener('click', () => { fetchByCategory('Food'); });

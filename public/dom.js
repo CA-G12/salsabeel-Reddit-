@@ -2,6 +2,7 @@ const trendingData = document.getElementsByClassName('trendingData')[0];
 const handleData = document.getElementsByClassName('handleData')[0];
 const photography = document.getElementById('photography');
 const nature = document.getElementById('nature');
+const popular = document.getElementById('popular');
 const food = document.getElementById('food');
 const job = document.getElementById('job');
 const addPOST = document.getElementById('addPOST');
@@ -151,6 +152,7 @@ function cretinPost(postId) {
   }).then((res) => res.json());
 }
 
+popular.addEventListener('click', () => { window.location.reload(); });
 food.addEventListener('click', () => { fetchByCategory('Food'); });
 nature.addEventListener('click', () => { fetchByCategory('Nature'); });
 photography.addEventListener('click', () => { fetchByCategory('Photography'); });
