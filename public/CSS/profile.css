@@ -1,6 +1,7 @@
 :root{
     --main-color: #10CA65;;
     --white-color:#ffff;
+    --f-color:#3F3C41;
     --border-radius-button: 2em; 
     --border-radius-img: 1em; 
     --margin-1em:1em;
@@ -14,6 +15,17 @@ button {
 main{
     margin :1.5em;
 }
+body{
+    color:var(--f-color);
+}
+.fa-solid, .fas,.fa-trash{
+    color:var(--main-color);
+    }
+    .fa-trash{
+        margin-top: 2px;
+        color:var(--f-color);
+        font-size:20px;
+    }
 #coverUrl{
     display: block;
     width: 100%;
@@ -58,11 +70,14 @@ main{
 h3{
     font-size: 20px;  
  }
-/*.posts{
+.posts{
     margin:  var(--margin-3em);
     display: flex;
     justify-content: flex-start;
     flex-wrap:wrap;
+}
+.postDiv{
+    margin: 1em;
 }
 .postImg{
     width:180px;
@@ -78,4 +93,4 @@ h3{
     margin-left: 10em;
     margin-top: -3em;
     width: 50%;
-} */
+}

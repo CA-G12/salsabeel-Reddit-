@@ -2,22 +2,25 @@ const { join } = require('path');
 const { userQueries } = require('../database/Queries');
 
 const userProfile = (req, res) => {
-  if (req.user) {
+  if (req.user||req.params.id) {
     res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'profile.html'));
   } else {
     res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'login.html'));
   }
 };
+
 const userinfo = (req, res) => {
-  if (req.user) {
-    userQueries.getUserInfo(req.user.data.id)
+  if (req.params.id||req.user) {
+    const id = req.params.id||req.user.data.id;
+    userQueries.getUserInfo(id)
       .then((data) => res.json({ info: data.rows }))
       .catch((err) => res.json({ err }));
   }
 };
 const userPosts = (req, res) => {
-  if (req.user) {
-    userQueries.getUserPosts(req.user.data.id)
+  if (req.params.id||req.user) {
+    const id = req.params.id||req.user.data.id;
+    userQueries.getUserPosts(id)
       .then((data) => res.json({ posts: data.rows }))
       .catch((err) => res.json({ err }));
   }
@@ -40,6 +43,12 @@ const editCoverImg = (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  if (req.user) {
+    res.clearCookie('token');
+    res.json({done :'done'});
+  }
+};
 module.exports = {
-  userinfo, userPosts, editProfileImg, editCoverImg, userProfile,
+  userinfo, userPosts, editProfileImg, editCoverImg, userProfile, logout,
 };

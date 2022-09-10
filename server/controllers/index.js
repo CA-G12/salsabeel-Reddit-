@@ -1,9 +1,12 @@
 const signup = require('./signup');
 const login = require('./login');
-const { allPosts, addPosts, deletePost, getTrend, getCategory } = require('./post');
 const {
-  userinfo, userPosts, editProfileImg, editCoverImg, userProfile,
+  allPosts, addPosts, deletePost, getTrend, getCategory, cretinPost
+} = require('./post');
+const {
+  userinfo, userPosts, editProfileImg, editCoverImg, userProfile, logout,
 } = require('./user');
+const { getUserAction, updateLikeAc, updateRateAc } = require('./action');
 
 module.exports = {
   signup,
@@ -17,5 +20,10 @@ module.exports = {
   deletePost,
   userProfile,
   getTrend,
-  getCategory
+  getCategory,
+  getUserAction,
+  updateLikeAc,
+  updateRateAc,
+  logout,
+  cretinPost,
 };

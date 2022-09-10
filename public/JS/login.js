@@ -69,11 +69,13 @@ loginForm.addEventListener('submit', (event) => {
       body: JSON.stringify(data),
     }).then((res) => res.json())
       .then((data) => {
-        if (data.error.includes('password')) {
+        if (data.err) {
           showError(
             loginPassword,
             'Password Not correct ',
           );
+        }else{
+          window.location.href='/'
         }
       })
       .catch((err) => console.log(err));

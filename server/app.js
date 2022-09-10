@@ -15,6 +15,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(authorization);
+
+app.get('/', (req, res) => {
+  if (req.user) res.sendFile(join(__dirname, '..', 'public', 'pages', 'home.html'));
+  else res.sendFile(join(__dirname, '..', 'public'));
+});
 app.use(express.static(join(__dirname, '..', 'public')));
 app.use(router);
 module.exports = app;

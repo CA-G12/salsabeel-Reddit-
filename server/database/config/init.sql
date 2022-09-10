@@ -28,8 +28,8 @@ CREATE TABLE  actions (
      postId  INT NOT NULL,
      rated  INT CHECK ( rated  IN( 0 , 1)) DEFAULT 0 ,
      liked  INT CHECK (liked  IN(0,1)) DEFAULT 0 ,
-     CONSTRAINT  actions_userid_foreign  FOREIGN KEY( userId ) REFERENCES  users ( id ),
-     CONSTRAINT  actions_postid_foreign  FOREIGN KEY( postId ) REFERENCES  posts ( id )
+     CONSTRAINT  actions_userid_foreign  FOREIGN KEY( userId ) REFERENCES  users ( id ) on Delete CASCADE  ,
+     CONSTRAINT  actions_postid_foreign  FOREIGN KEY( postId ) REFERENCES  posts ( id ) on Delete CASCADE 
 );
 CREATE VIEW  userInfo AS SELECT id ,email,userName,imageUrl,coverURL FROM users ;
 
