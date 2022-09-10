@@ -15,18 +15,25 @@ class Posts {
     return connection.query(this.sql);
   }
 
+  getCretinPost(id) {
+    this.sql = {
+      text: ' Select p.content,p.title,p.category,p.imageUrl as imagePost,u.id as userId ,u.userName,u.imageUrl  as imageUser, COALESCE(sum(a.liked),0)as like,COALESCE(sum(a.rated),0)as rate FROM posts p Full Outer join actions a on a.postId= p.id Full outer join users u on p.userId=u.id where p.id=$1 group by u.id,u.userName,u.imageUrl,p.id,p.userId ,p.content,p.title,p.category,p.imageUrl;',
+      values: [id],
+    };
+    return connection.query(this.sql);
+  }
+
   getPostByCategory(category) {
-    
     this.sql = {
       text: 'SELECT p.id,p.userId,p.content,p.title,p.category,p.imageUrl,COALESCE(sum(a.liked),0)as like,COALESCE(sum(a.rated),0) as rate FROM posts p left join actions a on a.postId= p.id Where category=$1 group by p.id,p.userId ,p.content,p.title,p.category,p.imageUrl ;',
       values: [category],
-    };console.log(this.sql.text);
+    };
     return connection.query(this.sql);
   }
 
   deletePost({ postId, userId }) {
     this.sql = {
-      text: 'DELETE FROM posts where id=$1 userId=$2; returning id',
+      text: 'DELETE FROM posts where id=$1 and userId=$2 ',
       values: [postId, userId],
     };
     return connection.query(this.sql);

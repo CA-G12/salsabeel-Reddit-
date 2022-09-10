@@ -16,7 +16,7 @@ const login = (req, res) => {
       });
     }))
     .then((data) => {
-      if (!data) { res.json('Password not correct'); } else { return userQueries.getCredential(email); }
+      if (!data) { throw new Error('Password not correct'); } else { return userQueries.getCredential(email); }
     })
     .then((data) => generateToken({ id: data.rows[0].id }))
     .then((token) => {

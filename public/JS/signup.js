@@ -71,9 +71,6 @@ function submitValidation(event) {
 showPasswordIcon.addEventListener('click', showPassword);
 submitBtn.addEventListener('click', (event) => {
   event.preventDefault();
-  //   const subeel = submitValidation(event);
-  // console.log(subeel)
-  //   if (subeel) {
   const data = {
     email: loginEmail.value,
     username: userName.value,
@@ -88,6 +85,15 @@ submitBtn.addEventListener('click', (event) => {
     },
     body: JSON.stringify(data),
   }).then((res) => res.json())
-    .then((data) => console.log(data, 1221))
+    .then((data) => {
+      if (data.err) {
+        showError(
+          loginPassword,
+          'Password Not correct ',
+        );
+      } else {
+        window.location.href = '/';
+      }
+    })
     .catch((error) => console.log(error));
 });

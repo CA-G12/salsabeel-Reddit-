@@ -1,29 +1,51 @@
 const trendingData = document.getElementsByClassName('trendingData')[0];
 const handleData = document.getElementsByClassName('handleData')[0];
+const popDiv = document.getElementsByClassName('popDiv')[0];
+const closepop = document.getElementsByClassName('closepop')[0];
 const photography = document.getElementById('photography');
 const nature = document.getElementById('nature');
 const food = document.getElementById('food');
 const job = document.getElementById('job');
 const addPOST = document.getElementById('addPOST');
-const popDiv = document.getElementsByClassName('popDiv')[0];
-const closepop = document.getElementsByClassName('closepop')[0];
-const sectionPost = document.getElementById('sectionPost');
 const inputsPost = document.getElementById('inputsPost');
+const categorySelection = document.getElementById('categorySelection');
+const title = document.getElementById('title');
+const content = document.getElementById('content');
+const imgInput = document.getElementById('imgInput');
+const add = document.getElementById('add');
+const sectionPost = document.getElementById('sectionPost');
+const logout = document.getElementById('logout');
 
 addPOST.addEventListener('click', () => {
   popDiv.style.display = 'block';
   inputsPost.style.display = 'block';
   sectionPost.style.display = 'none';
 });
-
-addPOST.addEventListener('click', () => {
-  popDiv.style.display = 'block';
-  inputsPost.style.display = 'block';
-  sectionPost.style.display = 'none';
+add.addEventListener('click', () => {
+  if (imgInput.value !== '' && content.value !== '' && title.value !== '') {
+    const postData = {
+      content: content.value,
+      title: title.value,
+      category: categorySelection.value,
+      imageUrl: imgInput.value,
+    };
+    fetch('/addPosts', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(postData),
+    });
+    window.location.reload();
+  } else {
+    const fillAll = document.createElement('p');
+    fillAll.textContent = 'All input must not be empty ';
+    inputsPost.append(fillAll);
+  }
 });
+
 closepop.addEventListener('click', () => {
   popDiv.style.display = 'none';
 });
+
 function fetchByCategory(category) {
   fetch(`/posts/${category}`, {
     method: 'GET',
@@ -52,6 +74,12 @@ function userAction(data, actionType) {
     actionType.classList.add('fa-regular');
   }
 }
+function ActionIncreaseHandler(actionType) {
+  return ++actionType;
+}
+function ActionDecreaseHandler(actionType) {
+  return --actionType;
+}
 
 function createPost(data, dataFor) {
   dataFor.textContent = '';
@@ -63,7 +91,9 @@ function createPost(data, dataFor) {
     const postImg = document.createElement('img');
     postImg.setAttribute('class', 'postImg');
     postImg.src = ele.imageurl;
-    postImg.addEventListener('click',()=>{postInfo(ele.id)});
+    postImg.addEventListener('click', () => {
+      postInfo(ele.id);
+    });
 
     const infoDiv = document.createElement('div');
     infoDiv.setAttribute('class', 'infoDiv');
@@ -76,12 +106,36 @@ function createPost(data, dataFor) {
     spanLike.textContent = ele.like;
 
     const likes = document.createElement('i');
-    likes.setAttribute('class', 'fa-regular fa-heart');
+    likes.classList.add('fa-heart');
+    fetchByLikeByPost('/userAction', { postId: ele.id })
+      .then((action) => {
+        if (action.actions.length > 0 && action.actions[0].liked) {
+          likes.classList.add('fa-solid');
+        } else {
+          likes.classList.add('fa-regular');
+        }
+      })
+      .catch((err) => console.log(err));
 
     spanLike.appendChild(likes);
 
     spanLike.addEventListener('click', () => {
-      alert('you must login');
+      if (likes.classList.contains('fa-regular')) {
+        spanLike.textContent = ActionIncreaseHandler(spanLike.textContent);
+        likes.classList.remove('fa-regular');
+        likes.classList.add('fa-solid');
+        likes.style.color = '#10CA65';
+        fetchByLikeByPost('/userLike', { postId: ele.id, newLike: 1 });
+        spanLike.appendChild(likes);
+      } else {
+        spanLike.textContent = ActionDecreaseHandler(spanLike.textContent);
+        likes.classList.remove('fa-solid');
+        likes.classList.add('fa-regular');
+        likes.style.color = '#3f3c41';
+        fetchByLikeByPost('/userLike', { postId: ele.id, newLike: 0 });
+        spanLike.appendChild(likes);
+      }
+      window.location.reload();
     });
 
     infoDiv.append(postTitle, spanLike);
@@ -89,22 +143,6 @@ function createPost(data, dataFor) {
     dataFor.appendChild(postDiv);
   });
 }
-
-fetch('/posts', {
-  method: 'GET',
-  headers: { 'content-type': 'application/json' },
-})
-  .then((res) => res.json())
-  .then((data) => createPost(data, handleData))
-  .catch((err) => console.log(err));
-
-fetch('/trending', {
-  method: 'GET',
-  headers: { 'content-type': 'application/json' },
-})
-  .then((res) => res.json())
-  .then((data) => createPost(data, trendingData))
-  .catch((err) => console.log(err));
 
 function postInfo(postId) {
   inputsPost.style.display = 'none';
@@ -144,7 +182,7 @@ function postInfo(postId) {
     ratespan.textContent = data.post[0].like;
 
     const rates = document.createElement('span');
-    rates.textContent = 'votes';
+    rates.textContent='votes';
 
     const hr = document.createElement('hr');
 
@@ -156,6 +194,22 @@ function postInfo(postId) {
     sectionPost.append(userDiv, infoDiv);
   }).catch((err) => console.log(err));
 }
+fetch('/posts', {
+  method: 'GET',
+  headers: { 'content-type': 'application/json' },
+})
+  .then((res) => res.json())
+  .then((data) => createPost(data, handleData))
+  .catch((err) => console.log(err));
+
+fetch('/trending', {
+  method: 'GET',
+  headers: { 'content-type': 'application/json' },
+})
+  .then((res) => res.json())
+  .then((data) => createPost(data, trendingData))
+  .catch((err) => console.log(err));
+
 function cretinPost(postId) {
   return fetch('/cretinPost', {
     method: 'POST',
@@ -163,9 +217,16 @@ function cretinPost(postId) {
     body: JSON.stringify({ postId }),
   }).then((res) => res.json());
 }
+logout.addEventListener('click', () => {
+  fetch('/logout', {
+    method: 'GET',
+    headers: { 'content-type': 'application/json' },
+  })
+    .then((res) => res.json())
+    .then((data) => window.location.reload());
+});
 
 food.addEventListener('click', () => { fetchByCategory('Food'); });
 nature.addEventListener('click', () => { fetchByCategory('Nature'); });
 photography.addEventListener('click', () => { fetchByCategory('Photography'); });
 job.addEventListener('click', () => { fetchByCategory('Job'); });
-addPOST.addEventListener('click', () => { alert('you must login'); });
