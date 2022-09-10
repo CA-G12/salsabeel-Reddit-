@@ -10,7 +10,7 @@ const nature = document.getElementById('nature');
 const food = document.getElementById('food');
 const job = document.getElementById('job');
 const param = window.location.href.lastIndexOf('/') === 29 ||  window.location.href.lastIndexOf('/') === 39;
-console.log('https://craft4you.herokuapp.com/profile/2'.lastIndexOf('/'),window.location.href.lastIndexOf('/'));
+console.log('https://craft4you.herokuapp.com/profile/2'.lastIndexOf('/'),param);
 craft.addEventListener('click', () => {
   window.location.href = '/';
 });
@@ -119,7 +119,6 @@ function handleUserInfo(data) {
   coverUrl.src = coverurl;
   userName.textContent = username;
 }
-
 if (param) {
   fetch(`/user/${window.location.href[40]}`, {
     method: 'GET',
