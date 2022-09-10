@@ -4,6 +4,10 @@ const craft2 = document.getElementsByClassName('craft')[1];
 const imageUrl = document.getElementById('imageUrl');
 const coverUrl = document.getElementById('coverUrl');
 const userName = document.getElementById('username');
+const photography = document.getElementById('photography');
+const nature = document.getElementById('nature');
+const food = document.getElementById('food');
+const job = document.getElementById('job');
 const param = window.location.href.lastIndexOf('/') === 29;
 craft.addEventListener('click', () => {
   window.location.href = '/';
@@ -145,3 +149,7 @@ if (param) {
     .then((data) => createPost(data.posts))
     .catch((err) => console.log(err));
 }
+food.addEventListener('click', () => { fetchByCategory('Food'); });
+nature.addEventListener('click', () => { fetchByCategory('Nature'); });
+photography.addEventListener('click', () => { fetchByCategory('Photography'); });
+job.addEventListener('click', () => { fetchByCategory('Job'); });
