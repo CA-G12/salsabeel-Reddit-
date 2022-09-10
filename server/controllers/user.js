@@ -2,7 +2,7 @@ const { join } = require('path');
 const { userQueries } = require('../database/Queries');
 
 const userProfile = (req, res) => {
-  if (req.user||req.params.id) {
+  if (req.params.id) {
     res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'profile.html'));
   } else {
     res.sendFile(join(__dirname, '..', '..', 'public', 'pages', 'login.html'));
