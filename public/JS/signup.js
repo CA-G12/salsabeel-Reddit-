@@ -25,75 +25,40 @@ function showError(input, message) {
     alertMessage.style.color = 'red';
     alertMessage.innerText = message;
   }
-  return false;
 }
 
 function showSuccess(input) {
-  const formField = input.parentElement;
-  formField.className = 'form-field success';
-
-  if ((formField.className === 'form-field success')) {
-    const alertMessage = formField.querySelector('.alert-message');
-    alertMessage.style.visibility = 'hidden';
-  }
-  return true;
+  if (confirmPassword.value === loginPassword.value) return true;
+  return showError(confirmPassword, 'passwords not equaled');
 }
-
-function submitValidation(event) {
-  event.preventDefault();
-  let flag = true;
-  if (loginEmail.value === '' && loginPassword.value === '' && confirmPassword.value === '' && userName.value === '') {
-    flag = flag && showSuccess(userName);
-  } else {
-    flag = flag && showError(
-      type,
-      'values  cannot Correct ',
-    );
-  } if (!(loginEmail.value.includes('@'))) {
-    flag = flag && showError(
-      confirmPassword,
-      'values  cannot Correct ',
-    );
-  } else {
-    flag = flag && showSuccess(loginEmail);
-  }
-  if (loginPassword.value.length < 8 && loginPassword.value === confirmPassword.value) {
-    flag = flag && showError(
-      loginPassword,
-      'Password must be more than 8characters',
-    );
-  } else {
-    flag = flag && showSuccess(loginPassword);
-  }
-  return flag;
-}
-
 showPasswordIcon.addEventListener('click', showPassword);
 submitBtn.addEventListener('click', (event) => {
   event.preventDefault();
-  const data = {
-    email: loginEmail.value,
-    username: userName.value,
-    password: loginPassword.value,
-    confirmpassword: confirmPassword.value,
-  };
+  if (showSuccess) {
+    const data = {
+      email: loginEmail.value,
+      username: userName.value,
+      password: loginPassword.value,
+      confirmpassword: confirmPassword.value,
+    };
 
-  return fetch('/signup', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  }).then((res) => res.json())
-    .then((data) => {
-      if (data.err) {
-        showError(
-          loginPassword,
-          'Password Not correct ',
-        );
-      } else {
-        window.location.href = '/';
-      }
-    })
-    .catch((error) => console.log(error));
+    return fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then((res) => res.json())
+      .then((data) => {
+        if (data.err) {
+          showError(
+            loginPassword,
+            'Password Not correct ',
+          );
+        } else {
+          window.location.href = '/';
+        }
+      })
+      .catch((error) => console.log(error));
+  }
 });

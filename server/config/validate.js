@@ -3,7 +3,7 @@ const joi = require('joi');
 const validateSignup = (info) => {
   const schema = joi.object({
     email: joi.string().required().email(),
-    username: joi.string().required().min(10).max(80),
+    username: joi.string().required().min(4).max(80),
     password: joi.string().required().min(8).max(15),
     confirmpassword: joi.ref('password'),
   });

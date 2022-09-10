@@ -139,3 +139,9 @@ input:-webkit-autofill:focus {
   font-size:.9em;
   font-weight: 300;
 }
+div input:valid{
+  color: green;
+}
+div input:invalid{
+  color: red;
+}
