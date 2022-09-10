@@ -10,17 +10,26 @@ const userProfile = (req, res) => {
 };
 
 const userinfo = (req, res) => {
-  if (req.params.id||req.user) {
-    const id = req.params.id||req.user.data.id;
+  if (req.params.id) {
+    const id = req.params.id
     userQueries.getUserInfo(id)
       .then((data) => res.json({ info: data.rows }))
       .catch((err) => res.json({ err }));
   }
+  else{
+    userQueries.getUserInfo(req.user.data.id)
+    .then((data) => res.json({ info: data.rows }))
+    .catch((err) => res.json({ err })); 
+  }
 };
 const userPosts = (req, res) => {
-  if (req.params.id||req.user) {
-    const id = req.params.id||req.user.data.id;
+  if (req.params.id) {
+    const id = req.params.id;
     userQueries.getUserPosts(id)
+      .then((data) => res.json({ posts: data.rows }))
+      .catch((err) => res.json({ err }));
+  }else{
+    userQueries.getUserPosts(req.user.data.id)
       .then((data) => res.json({ posts: data.rows }))
       .catch((err) => res.json({ err }));
   }
