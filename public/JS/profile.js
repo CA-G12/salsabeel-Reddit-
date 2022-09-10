@@ -9,8 +9,8 @@ const popular = document.getElementById('popular');
 const nature = document.getElementById('nature');
 const food = document.getElementById('food');
 const job = document.getElementById('job');
-const param = window.location.href.lastIndexOf('/') === 29||'https://craft4you.herokuapp.com/profile/2'.lastIndexOf('/')==39 ;
-console.log('https://craft4you.herokuapp.com/profile/2'.lastIndexOf('/') );
+const param = window.location.href.lastIndexOf('/') === 29||window.location.href.lastIndexOf('/') ===39 ;
+
 craft.addEventListener('click', () => {
   window.location.href = '/';
 });
