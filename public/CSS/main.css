@@ -13,11 +13,7 @@ margin:0;
 padding:0;
 box-sizing: border-box;
 }
-.allPost{
-    margin-top: 3em;
-    display: flex;
-    justify-content: space-between;
-}
+
 .search button {
     left: 2%;
     top: 20%
@@ -25,17 +21,6 @@ box-sizing: border-box;
 #search{
     width: 40%;
 }
-.handleData{
-    display: flex;
-    flex-wrap: wrap;
-    align-content: baseline;
-
-  }
-.postDiv{
-    margin:.5em;
-    height:250px;
-    width:200px;
-  }
 
   ul{
     width:400px;
@@ -59,14 +44,11 @@ box-sizing: border-box;
     color:var(--main-color);
     }
     #addPOST{
-      width: 200px;
-      height: 30px;
-      margin-top:2em;
       padding: .25em;
-      background-color: var(--main-color);
-      color:var(--color-white);
+      border: 2px var(--main-color) solid;
       border-radius:.2em;
       font-size: 20px;
+      margin-top: 1em;
   }
   .popDiv {
     background-color: rgb(0 0 0 / 18%);
@@ -131,11 +113,6 @@ box-sizing: border-box;
   display: block;
   border-radius: 5%;
 }
-.userImages{
-  width:80px;
-  height:80px;
-  border-radius: 50%;
-}
 .userDiv{
   display: flex;
   flex-direction: row;
@@ -153,4 +130,8 @@ box-sizing: border-box;
 .actionDiv{
   display: flex;
   justify-content: space-evenly;
+}
+.createPost{
+  margin-top:3em;
+  margin-left:3em;
 }

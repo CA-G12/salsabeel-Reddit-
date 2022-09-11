@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 app.use(express.static(join(__dirname, '..', 'public')));
 app.use(router);
 app.use((req, res) => {
-  console.log(join(__dirname, '..', 'public', 'error', '404.html'));
+
   res.status(404).sendFile(join(__dirname, '..', 'public', 'error', '404.html'));
 });
 app.use((err, req, res) => {

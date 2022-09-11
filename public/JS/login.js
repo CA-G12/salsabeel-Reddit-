@@ -72,7 +72,7 @@ loginForm.addEventListener('submit', (event) => {
         if (data.err) {
           showError(
             loginPassword,
-            'Password Not correct ',
+            'Email or Password Not correct ',
           );
         }else{
           window.location.href='/'
