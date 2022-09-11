@@ -9,6 +9,7 @@
     --f-border :#9f9d9f50;
     --f-search:#9f9d9f28;
     --margin-1em:1em;
+    --border-radius-img:10px;
 }
 *{
     margin: 0;
@@ -102,17 +103,77 @@ button{
     flex-wrap:wrap;
 }
 .postImg{
-    width:180px;
-    height: 180px;
+    width:150px;
+    height: 150px;
     border-radius: var(--border-radius-img);
 }
 .infoDiv{
     display: flex;
     justify-content: space-between;
-    padding: 3px 10px;
 }
+.infoDiv p{
+  margin-top:3em;
+  margin-left:2em
+}
+
 .NoPosts{
     margin-left: 10em;
     margin-top: -3em;
     width: 50%;
+}
+.handleData{
+width:600px;
+}
+.allPost{
+  display: flex;
+}
+.postDiv{
+  margin-top:2em;
+}
+.createPost button{
+  margin: auto;
+  display: block;
+  background-color: var(--main-color);
+  color: var(--color-white);
+  width: 100px;
+  border-radius: 3px;
+  height: 30px;
+}
+.trendingData{
+  display: flex;
+  flex-direction: row;
+}
+.trendingData div{
+  margin-left: 1em;
+}
+.createPost{
+  margin-top:3em;
+  margin-left:3em;
+}
+.userImages{
+  width:60px;
+  height:60px;  
+  border-radius: 50%;
+}
+.userDiv{
+  display: flex;
+  flex-direction: row;
+}
+.userDiv a  { 
+  margin-top: 22px;
+  margin-left: 15px;
+  text-decoration: none;
+  color: inherit;
+}
+.userDiv a:hover{
+  color:var(--main-color);
+
+}
+.actionDiv{
+  display: flex;
+  justify-content: space-evenly;
+}
+.createPost{
+  margin-top:3em;
+  margin-left:3em;
 }

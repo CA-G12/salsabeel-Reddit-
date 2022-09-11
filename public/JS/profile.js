@@ -5,12 +5,11 @@ const imageUrl = document.getElementById('imageUrl');
 const coverUrl = document.getElementById('coverUrl');
 const userName = document.getElementById('username');
 const photography = document.getElementById('photography');
-const popular = document.getElementById('popular');
 const nature = document.getElementById('nature');
 const food = document.getElementById('food');
 const job = document.getElementById('job');
-const param = window.location.href.lastIndexOf('/') === 29 ||  window.location.href.lastIndexOf('/') === 39;
-console.log('https://craft4you.herokuapp.com/profile/2'.lastIndexOf('/'),param);
+const param = window.location.href.lastIndexOf('/') === 29 || window.location.href.lastIndexOf('/') === 39;
+const paramPart = window.location.href[40] || window.location.href[30];
 craft.addEventListener('click', () => {
   window.location.href = '/';
 });
@@ -114,13 +113,12 @@ function ActionDecreaseHandler(actionType) {
 
 function handleUserInfo(data) {
   const { username, imageurl, coverurl } = data.info[0];
-  console.log(username);
   imageUrl.src = imageurl;
   coverUrl.src = coverurl;
   userName.textContent = username;
 }
 if (param) {
-  fetch(`/user/${window.location.href[40]}`, {
+  fetch(`/user/${paramPart}`, {
     method: 'GET',
     headers: { 'content-type': 'application/json' },
   }).then((res) => res.json())
@@ -136,7 +134,7 @@ if (param) {
 }
 
 if (param) {
-  fetch(`/userPosts/${window.location.href[40]}`, {
+  fetch(`/userPosts/${paramPart}`, {
     method: 'GET',
     headers: { 'content-type': 'application/json' },
   }).then((res) => res.json())

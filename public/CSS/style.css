@@ -18,12 +18,12 @@
 main{
     display: flex;
     justify-content: flex-start;
-    height:100vh;
 }
 .imgSection{
     color: white;
     background-color:var(--main-color);
     width: 45%;
+    height: 100vh;
 }
 h1{
   margin-top: 1.5em; 
@@ -39,7 +39,6 @@ h1{
 
 body {
     width: 100vw;
-    height: 100vh;
     font-family:var(--ff-Jost);
     background-color:var(--background-card);
 }
