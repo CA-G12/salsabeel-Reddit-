@@ -23,7 +23,7 @@ when I finish subscribing to classes I can log out.
 
 ## Installation :
 - If you're a git user :
-    in you terminal type : `git clone https://github.com/CA-G12/Fit-life.git `
+    in you terminal type : `git clone https://github.com/CA-G12/salsabeel-Reddit-.git `
     then : `cd Fit-life.git`
 - If you're not a git user :
   - Click on the 'Code' green button on the right.
