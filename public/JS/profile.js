@@ -9,7 +9,8 @@ const nature = document.getElementById('nature');
 const food = document.getElementById('food');
 const job = document.getElementById('job');
 const param = window.location.href.lastIndexOf('/') === 29 || window.location.href.lastIndexOf('/') === 39;
-const paramPart = window.location.href[40] || window.location.href[30];
+const paramPart = window.location.href.slice(40) || window.location.href.slice(30);
+console.log(paramPart);
 craft.addEventListener('click', () => {
   window.location.href = '/';
 });
